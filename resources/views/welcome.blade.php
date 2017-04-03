@@ -83,7 +83,13 @@
                 </div>
 
                 <div class="links">
-                    <a href="/blog">Blogs</a>
+                    <a href="/blog">Read Blogs</a>
+                    @if (Auth::user())
+                        <a href="{{ url('\blog\create') }}">Create Blog</a>
+                    @endif
+                    @if ((Auth::user()) && (Auth::user()->role_id == 1))
+                        <a href="{{ url('\admin') }}">Administrator</a>
+                    @endif
                 </div>
             </div>
         </div>

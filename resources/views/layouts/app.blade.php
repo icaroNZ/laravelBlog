@@ -44,7 +44,10 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('\blog') }}">Blogs</a></li>
+                        <li><a href="{{ url('\blog') }}">Read Blogs</a></li>
+                        @if (Auth::user())
+                            <li><a href="{{ url('\blog\create') }}">Create Blog</a></li>
+                        @endif
                         @if ((Auth::user()) && (Auth::user()->role_id == 1))
                             <li><a href="{{ url('\admin') }}">Administrator</a></li>
                         @endif
