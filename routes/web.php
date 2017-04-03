@@ -44,4 +44,5 @@ Route::resource('/category', 'CategoryController');
 
 Route::resource('/user', 'UserController');
 
+Route::resource('/comment', 'CommentController');
 

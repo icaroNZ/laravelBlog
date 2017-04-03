@@ -90,6 +90,8 @@ class BlogController extends Controller
         $blog = Blog::findOrFail($id);
         $categoriesIds = $request->category_id;
         $blog->category()->detach($categoriesIds);
+        $commentsIds = $request->comment_id;
+        $blog->comment()->detach($commentsIds);
         $blog->delete($input);
         return redirect('/blog/trashed');
     }
@@ -112,5 +114,16 @@ class BlogController extends Controller
         $removeFromDB = Blog::onlyTrashed()->findOrFail($id);
         $removeFromDB->forceDelete();
         return back();
+    }
+
+    public function addComment(Request $request, $id)
+    {
+        $input = $request->all();
+        $blog = Blog::findOrFail($id);
+        $blog->update($input);
+        if ($categoriesIds = $request->category_id){
+            $blog->category()->sync($categoriesIds);
+        }
+        return view('blog.show', compact('blog'));
     }
 }
