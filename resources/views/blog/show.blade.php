@@ -24,6 +24,7 @@
              @endforeach
          </div>
         <div>
+            @if($blog->comment()->get()->count() > 0)
             <div class="container">
                 <h2>Comments:</h2>
                 @foreach($blog->comment as $comment)
@@ -40,8 +41,10 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+            @endif
         </div>
-
+            @if(Auth::user())
             <div class="col-sm-8 col-sm-offset-2">
                 {!! Form::open(['method' => 'POST', 'action' => 'CommentController@store']) !!}
                 <div>
@@ -55,6 +58,6 @@
                 </div>
                 {!! Form::close() !!}
             </div>
-
+            @endif
     </div>
 @endsection

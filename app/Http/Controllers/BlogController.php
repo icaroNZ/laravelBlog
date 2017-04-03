@@ -81,7 +81,7 @@ class BlogController extends Controller
         if ($categoriesIds = $request->category_id){
             $blog->category()->sync($categoriesIds);
         }
-        return view('blog.show', compact('blog'));
+        return redirect('/blog');
     }
 
     public function destroy(Request $request, $id)
